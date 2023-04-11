@@ -96,5 +96,112 @@
       print(a)
   ```
 
-  
+
+### 4. 单例模式
+
+- 单例模式也是一种比较好理解的设计模式：保证一个类只有一个实例，并且提供了访问该实例的全局访问点。
+
+- 全局变量和单例：
+
+  - 二者的区别很明显：全局变量不保证只有一个实例，而单例模式是保证只有一个实例的。
+  - 个人认为部分全局变量本质上就是保持”单例“的，后续我会举例说明。
+
+- 但根据个人开发的经历来说，感觉基本没有用到过单例设计模式，但会有单例的思想：
+
+  - 导表数据。游戏开发中，各种数据是通过导表来设置的，服务器使用的导表数据在内存中也只有一份，并且这份数据不会进行修改，只进行读取，但使用的是全局变量的形式。
+  - 各种管理器。一般会将各种管理器绑定在玩家对象上，本质上对每个玩家来说这些管理器也只有一个实例，个人觉得也是一种广义的单例。
+
+- 下面以python为例给出一些单例模式的代码示例：
+
+  - 函数装饰器：
+
+    ```python
+    def Singleton(cls):
+    
+        _instance = {}
+    
+        def inner():
+            if cls not in _instance:
+                _instance[cls] = cls()
+            return _instance[cls]
+    
+        return inner
+    
+    
+    @Singleton
+    class MyClass:
+        pass
+    
+    
+    o1 = MyClass()
+    o2 = MyClass()
+    print(o1 is o2)  # True
+    ```
+
+  - 类装饰器：
+
+    ```python
+    class Singleton:
+    
+        def __init__(self, cls):
+            self._cls = cls
+            self._instance = {}
+    
+        def __call__(self, *args, **kwargs):
+            if self._cls not in self._instance:
+                self._instance[self._cls] = self._cls()
+            return self._instance[self._cls]
+    
+    
+    @Singleton
+    class MyClass:
+        pass
+    
+    
+    o1 = MyClass()
+    o2 = MyClass()
+    print(o1 is o2)  # True
+    ```
+
+  - 元类metaclass：
+
+    ```python
+    class Singleton(type):
+    
+        def __init__(self, *args, **kwargs):
+            self._instance = None
+            super(Singleton, self).__init__(*args, **kwargs)
+    
+        def __call__(self, *args, **kwargs):
+            if self._instance is None:
+                self._instance = super().__call__(*args, **kwargs)
+            return self._instance
+    
+    
+    class MyClass(metaclass=Singleton):
+        pass
+    
+    
+    o1 = MyClass()
+    o2 = MyClass()
+    print(o1 is o2)  # True
+    ```
+
+  - 类变量➕重写\_\_new\_\_方法：
+
+    ```python
+    class MyClass:
+    
+        _instance = None
+    
+        def __new__(cls, *args, **kwargs):
+            if cls._instance is None:
+                cls._instance = super(MyClass, cls).__new__(cls, *args, **kwargs)
+            return cls._instance
+    
+    
+    o1 = MyClass()
+    o2 = MyClass()
+    print(o1 is o2)  # True
+    ```
 
