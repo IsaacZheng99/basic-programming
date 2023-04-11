@@ -11,10 +11,10 @@
   - 学习算法的笔记。
   - 根据programmercarl刷题路线记录的笔记，这里推荐大家根据代码随想录的内容学习。
   - 一些业务中能用到的算法示例。
-- data_structure
+- data-structure
   - 学习数据结构的笔记。
   - 和algorithm下的内容有部分重叠。
   - 结合实际问题理解数据结构的本质。
-- design_pattern
+- design-pattern
   - 学习设计模式的笔记。
   - 结合实际问题理解设计模式的本质。
