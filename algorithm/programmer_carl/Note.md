@@ -87,3 +87,50 @@
 
 1. This is essentially an interval problem and we can use `Prefix sum` to solve it.
 
+## 2. Linked List
+
+**Knowledge Points**: `dummy node`, `double pointers`, `fast and slow pointers`
+
+### 1. Basics
+
+1. Variants: `Single Linked List`, `Doubly Linked List`, `Cyclic Linked List`
+2. Operations: `delete node`, `add node`.
+3. `Complexity comparison` between `array` and `linked list`.
+
+### 2. Remove Elements
+
+1. `Dummy node` can help use handle nodes in a uniform way.
+2. Remember to `delete` the `dummy node` or other nodes we add for simplicity if needed.
+
+### 3. Custom Linked List
+
+1. `Dummy node` can help **insert** node **before** a node whose index is given.
+2. Using a variable `m_Length` to record the current **length** of the linked list can simply the code.
+
+### 4. Reverse List
+
+1. `Double pointers`: `pre` and `cur` in this case, besides `next` is used to temporarily record `cur->next`.
+2. Notice the **order** of updating the two pointers.
+3. `Recursion` can also be used to solve this problem.
+
+### 5. Swap Pairs
+
+1. `Dummy node` can help us handle nodes in a uniform way, e.g., special judgement of the `head node` or some special cases like whether there is one or two nodes left in this problem.
+
+### 6. Remove the N-th node from end
+
+1. `Dummy node` can help us **remove** nodes.
+2. `Fast and slow pointers`: the fast pointer firstly move `n` steps and then the two pointers move together until the fast pointer arrives at the end, and now the slow pointer is pointing to the `n-th` node from end. Please notice that this is just a rough description and in the real code we may need to use `dummy node`, decide how many steps the fast pointer should actually move, and hot to end the co-move.
+
+### 7. Get Intersection Node
+
+1. `Fast and slow pointers`: the fast pointer firstly move forward to make the left length of the current linked list be equal to the length of the other linked list, which is shorter.
+
+### 8. Detect Cycle
+
+1. `Fast and slow pointers`: the fast pointers moves `2` steps at each time, while the slow pointer moves `1` step at each time and finally they will meet in the cycle if there is a cycle. (Note that there comes to some math.)
+
+
+
+
+
