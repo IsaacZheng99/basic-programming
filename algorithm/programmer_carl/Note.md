@@ -130,6 +130,48 @@
 
 1. `Fast and slow pointers`: the fast pointers moves `2` steps at each time, while the slow pointer moves `1` step at each time and finally they will meet in the cycle if there is a cycle. (Note that there comes to some math.)
 
+## 3. Hash Table
+
+**Knowledge Points**: `array, set, map` are all `hash tables`, `prune`, `addition overflow`
+
+### 1. Basics
+
+1. `Hash table`: a data structure that is directly accessed based on the value of a key.
+2. `Hash function`: map the `key` to the `index`.
+3. `Hash collison`: we can use `zipper method`, `linear detection method`, `double hashed method`, etc. to solve this problem.
+4. Common form: `array`, `set`, and `map`.
+5. `Hash table` can help us quickly find whether an element has appeared or not at the cost of additional space expenses.
+
+### 2. Is Anagram
+
+1. There are only lowercase letters in this problem, meaning we know the exact maximum size in advance, so we can just use `array` not `map` to solve it.
+2. Learn to handle data in just **one** `hash table` if possible.
+
+### 3. Intersection
+
+1. As we don't know the possible maximum size in advance, we need to use `set`. (Note that `set` needs more space and time (hash function needs time) than `array` does.)
+2. `std::unordered_set` can be constructed based on a given `std::vector`, vice versa.
+
+### 4. Happy Number
+
+### 5. Sum of Two Numbers
+
+### 6. Add Four Numbers
+
+### 7. Ransom Letter
+
+### 8. Sum of Three Numbers
+
+1. No need to use `hash table`, use `double pointers`.
+2. We can `prune` to make it faster.
+
+### 9. Sum of Four Numbers
+
+1. There are two classes of `pruning` in this problem.
+2. Notice the problem of `addition overflow`.
+
+
+
 
 
 
