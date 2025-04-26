@@ -170,9 +170,80 @@
 1. There are two classes of `pruning` in this problem.
 2. Notice the problem of `addition overflow`.
 
+## 4. String
 
+**Knowledge Points**: `double pointers`, `KMP: next array (essentially a partial match table, prefix table), maximum length of same prefix and suffix`
 
+### 1. Reverse String Ⅰ
 
+1. `Double pointers`.
+2. Learn to modify `the three expressions in for loop` to simplify the code.
 
+### 2. Reverse String Ⅱ
 
+### 3. Replace Number
+
+1. Get `std::string` from input: 
+
+    ```c++
+    std::string s;
+    std::cin >> s;
+
+2. Use `std::string::resize()` to change the size.
+3. After we resized the array, we sometimes need to change the value **from back to front**.
+
+### 4. Reverse Words
+
+1. Delete space:
+
+    1. We can use `std::string::erase()` to delete any element in a `std::string` but it has a complexity of `O(n)`. In this case, we can use `double pointers` to delete space.
+
+    1. We can handle `spaces` in a uniform way, i.e., we ignore all the original spaces and when it comes to the **middle** space, we **manually add** one space.
+
+2. Reverse: reverse globally, then reverse locally.
+
+### 5. Rightly Rotate String
+
+1. Reverse globally, then reverse locally. We can also reverse locally and then globally in this problem.
+
+### 6. strstr()
+
+1. `KMP`: when we can leverage the mismatched but traversed data, it comes to `KMP`.
+    1. `Next array`: it is essentially a `partial match table (prefix table)`. It records the maximum length of same prefix (without the last character) and suffix (without the first character) of the string before index `i` (including `i`). Thus, it can help us go back to the matched position, not just the next position.
+    2. `Maximum length of same prefix and suffix`:
+        1. For `"a"`, it's `0`.
+        2. For `"aa"`, it's `1`.
+        3. For `"aaa"`, it's `2`.
+        4. For `"aaab"`, it's `0`.
+    3. `Get next array`:
+        1. The index `j` is not only the index of the end of the prefix, but also the length of the longest common prefix and suffix.
+        2. `Go back`: `j = next[j - 1]` can help us go back becasue we have matched prefix1 and suffix1 until `j` and `next[j - 1]` tells we have also matched another pair of predix2 and suffix2 in the predix1. By conveying the same substrings, we can use `next[j - 1]` to find the matched pair.
+    4. Summary: the `next array` is the key and in the `get next array` and `match` processes, there are two commonalities: one is when the two characters are different, we need to **go back**, the other one is when the two characters are same, the `i` and `j` pointers will move forward together.
+
+### 7. Repeated Substring
+
+1. `Directly match`: 
+
+    ```c++
+    bool repeatedSubstringPattern(std::string s)
+    {
+        std::string t = s + s;
+        t.erase(t.begin());
+        t.erase(t.end() - 1);
+        if (t.find(s) != std::string::npos)
+            return true;
+        return false;
+    }
+    ```
+
+    We can simply the code:
+
+    ```c++
+    bool repeatedSubstringPattern(std::string s)
+    {
+    	return (s + s).find(s, 1) != s.size();
+    }
+    ```
+
+2. Match based on `KMP`: the problem is essentially to judge if there is a pattern string in the given string and it can construct the given string by repeat (or based on `3.7.1`, it becomes if `s` in `s + s` and the begin position is not `s.size()`). Moreover, in `programmer carl`, there is another solution based on `KMP` which needs some math to prove the sufficiency and necessity.
 
