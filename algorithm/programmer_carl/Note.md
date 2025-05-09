@@ -164,11 +164,13 @@
 
 1. No need to use `hash table`, use `double pointers`.
 2. We can `prune` to make it faster.
+3. We need to remove duplicates and the key is where to write the removing code.
 
 ### 9. Sum of Four Numbers
 
 1. There are two classes of `pruning` in this problem.
 2. Notice the problem of `addition overflow`.
+3. We need to remove duplicates and the key is where to write the removing code.
 
 ## 4. String
 
@@ -190,16 +192,13 @@
     std::cin >> s;
 
 2. Use `std::string::resize()` to change the size.
-3. After we resized the array, we sometimes need to change the value **from back to front**.
+3. After we resized the array, we sometimes need to change the value **from back to front**. In fact, when we encounter problems like filling a string, we can usually expand it first and then operate from back to front.
 
 ### 4. Reverse Words
 
 1. Delete space:
-
     1. We can use `std::string::erase()` to delete any element in a `std::string` but it has a complexity of `O(n)`. In this case, we can use `double pointers` to delete space.
-
-    1. We can handle `spaces` in a uniform way, i.e., we ignore all the original spaces and when it comes to the **middle** space, we **manually add** one space.
-
+    2. We can handle `spaces` in a uniform way, i.e., we ignore all the original spaces and when it comes to the **middle** space, we **manually add** one space.
 2. Reverse: reverse globally, then reverse locally.
 
 ### 5. Rightly Rotate String
@@ -246,4 +245,34 @@
     ```
 
 2. Match based on `KMP`: the problem is essentially to judge if there is a pattern string in the given string and it can construct the given string by repeat (or based on `3.7.1`, it becomes if `s` in `s + s` and the begin position is not `s.size()`). Moreover, in `programmer carl`, there is another solution based on `KMP` which needs some math to prove the sufficiency and necessity.
+
+## 5. Double Pointers
+
+**Knowledge Points**: `fast and slow pointers`, `pre and cur pointers`
+
+### 1. Remove Elements In Place
+
+1. `Fast and slow pointers`: the key is to define the `fast and slow pointers` and in this problem the `fast pointer` is pointing to **a qualified element** that is not equal to the target value and the `slow pointer` is pointing to the **place** where the qualified elements can be put.
+
+### 2. Reverse String Ⅰ
+
+### 3. Replace Number
+
+### 4. Reverse Words
+
+### 5. Reverse List
+
+### 6. Remove the N-th node from end
+
+### 7. Get Intersection Node
+
+### 8. Detect Cycle
+
+### 9. Sum of Three Numbers
+
+### 10. Sum of Four Numbers
+
+
+
+
 
