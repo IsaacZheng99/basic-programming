@@ -272,7 +272,56 @@
 
 ### 10. Sum of Four Numbers
 
+## 6. Stack and Queue
 
+**Knowledge Points**: `std::stack`, `std::queue`, `std::string::push_back()`, `std::string::pop_back()`, `std::stoi()`, `std::to_string()`, `stoll`, `monotomous queue`, `priority queue`, `std::priority_queue`, `max heap`, `min heap`, 
 
+### 1. Basics
 
+1. In `C++`, the `std::stack` and `std::queue` **don't** provide `iterator` to iterate the elements.
+
+2. We can tack `std::vector`, `std::list` or `std::deque` as the underlying container. In `SGI STL`, the default container of `std::stack` and `std::queue` is `std::deque`. We can call `std::stack` and `std::queue` as `container adapter`.
+
+    ```c++
+    std::stack<int, std::vector<int>> stack;
+    std::queue<int, std::deque<int>> queue;
+    ```
+
+### 2. Implement Queue Based on Stack
+
+1. Use two `stacks`, one is for `data in` and the other is for `data out`.
+2. We can directly get the size of the `stack` by `std::stack<>::size()`.
+
+### 3. Implement Stack Based On Queue
+
+1. If we still use two `queues`, they are essentially the same because if the `queue` accept the output of the other `queue`, this `queue` will just become a copy of the output `queue`. Therefore, we only need one `queue` in this problem by push the output elements to the `queue` again.
+2. We can directly get the size of the `queue` by `std::queue<>::size()`.
+
+### 4. Valid Brackets
+
+1. We can use `stack` to handle with brackets and paths. (In the case below, we finally enter the `a` directory.)
+
+    ```c++
+    cd a/b/c/../../
+    ```
+
+### 5. Remove Duplicates
+
+1. The `std::string` provides two methods: `push_back()` and `pop_back()` and we can directly take `std::string` as a `stack` to save space.
+
+### 6. Evaluate RPN
+
+1. `RPN` is equivalent to the `backorder traversal` of `binary tree`.
+2. We can use `std::stoi()` to transform `std::string` to `int`, `std::to_string()` to transform `int` to `std::string`, and `stoll()` to transform `std::string` to `long long`.
+
+### 7. Max Value in Sliding Window
+
+1. We need to use `monotomous queue` to record all the "possible maximums" because if we poped the current maximum value, we need to know the second greatest value.
+2. `Monotonous queue` can be implemented based on `std::deque` because we need to `pop_back()` elements and get the maximum value by `front()`.
+
+### 8. Top-k Frequent Elements
+
+1. We can use `priority queue` to solve the `top-k` problems.
+2. In `STL`, `std::priority_queue` is implemented based on `max heap` by default, which is a `complete binary tree` implmented by `std::vector`. If we want to implement `std::priority_queue` based on `min heap`, we need a comparison which returns `left > right`.
+3. In this problem we need to use `min heap`. If we use `max heap` in this problem, we need to sort all the frequencies and then pop `k`  elements, but if we use `min heap`, we can just sort part of them and pop until there are `k` frequencies left, which are not sorted.
 
