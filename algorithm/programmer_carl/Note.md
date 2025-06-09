@@ -325,3 +325,174 @@
 2. In `STL`, `std::priority_queue` is implemented based on `max heap` by default, which is a `complete binary tree` implmented by `std::vector`. If we want to implement `std::priority_queue` based on `min heap`, we need a comparison which returns `left > right`.
 3. In this problem we need to use `min heap`. If we use `max heap` in this problem, we need to sort all the frequencies and then pop `k`  elements, but if we use `min heap`, we can just sort part of them and pop until there are `k` frequencies left, which are not sorted.
 
+## 7. Binary Tree
+
+**Knowledge Points**: `variants: full binary tree, complete binary tree, binary search tree (binary sort tree), balanced binary search tree (AVL tree)`, `store binary tree: linked and sequential`, `traverse: preorder, inorder, postorder traversal (DFS), levelorder traversal (BFS)`,  `three core elements of recursion`, `complexity`, `height`, `depth`, `the relationship between the current problem and the traversal of binary tree`, `when does the recursive function need a return value`, `BST and inorder traversal`
+
+### 1. Basics
+
+1. Common variants:
+    1. `Full binary tree`: the depth is `k` and the count of the nodes is `2^k - 1`.
+    2. `Complete binary tree`: except the last layer, all the other layers have the maximum amount of nodes,and the nodes in the last layer must be on the leftmost side. The `priority queue` can be implemented by `heap`, which is usually a `complete binary tree`.
+    3. `Binary search tree (binary sort tree)`: it is a sorted tree and satisfies the values of the nodes in the left sub-tree are all less than the value of the root node if there is a left sub-tree, and the values of the nodes in the right sub-tree are all greater than the value of the root node if there is a right sub-tree, moreover, the left and right sub-trees also satisfy the two rules.
+    4. `Balanced binary search tree (AVL tree)`: it's a `null tree` or the height difference of the left sub-tree and right sub-tree is less than or equal to `1`.
+        1. We won't generally talk about individual `balanced binary tree` because the **balanced** property is used to decrease complexity in specialized scene, e.g., `binary search tree`. A simple `balanced binary tree` is not very specialized.
+        2. The `std::map`, `std::set`, `std::multimap`, `std::multiset` in `C++` is implemented based on `balanced binary search tree`.
+2. How to store binary tree?
+    1. `Linked storage`: use `pointer`.
+    2. `Sequential storage`: use `array`, e.g., if the index of the parent node is `i`, the index of the left child node is `2 * i + 1` and the index of the right child node is `2 * i + 2`.
+3. How to traverse binary tree?
+    1. `DFS`: `preorder, inorder, postorder traversal`. We can use `stack` to implement.
+    2. `BFS`: `levelorder traversal`. We can use `queue` to implement.
+
+### 2. Recursive Traversal of Binary Tree
+
+1. Three core elements of `recursion`:
+    1. The `parameters` and `return value` of the `revursive function`.
+    2. The `termination conditions`.
+    3. The `logic in one recursive layer`.
+
+### 3. Iterative Traversal of Binary Tree
+
+1. We can use `stack` to implement traversal.
+2. For `preorder traversal`, the orders of accessing the nodes and pushing the values of the nodes into the result vector are the same. But for `inorder traversal`, they are different. Therefore, we can't simply change the code of `iterative preorder traversal` to get the code of `iterative inorder traversal`. So in this case we use `pointer` to help access the current node and the `stack` is still used to temporarily store the nodes.
+3. For `preorder traversal`, we can get the `mid-left-right` result. As for `postorder traversal`, we need to get the `left-right-mid` result. Therefore, we can simply change the result of `preorder traversal` to `mid-right-left` and **reverse** it to get `left-right-mid`.
+4. If we compare the **complexity** of `revursive traversal` and `iterative traversal`, the time complexity is both `O(n)` and the space complexity if both `O(h)`, but for `recursive traversal`, it uses the `Call Stack`, which needs to store more information and it may lead to `stack overflow` as the size of it is limited, while for `iterative traversal`, the `stack` is created by the programmer, which will use the `heap memory` (the elements stored by `std::stack` is on the `heap`) and won't cause `stack overflow`. Therefore, we need to avoid use `revursive method` in real projects.
+
+### 4. Uniform Iterative Traversal of Binary Tree
+
+1. Two ways: `null pointer mark` and `bollean mark`. We simply use another variable to mark the state, which implies that we **have accessed** the current node but we **havn't handled** it and we will push it to the stack **again** but **mark** it, then next time we access it again, we will handle it, meaning we will put the value of it to the result vector.
+
+### 5. Levelorder Traversal of Binary Tree
+
+#### 1. Leetcode 102 Levelorder Traversal of Binary Tree
+
+1. We can use `queue` to implement iterative levelorder traversal and notice that don't directly use `queue.size()` because it will change in the `for loop`.
+2. For recursive levelorder traversal, we need to add a variable `depth` to record the current depth of the current accessed node. Notice that the return type of `std::vector<>::size()` is `size_t`, which is `unsigned`, so if we want to compare it to, e.g., the depth in this case, we can't use `result.size() - 1 < depth` because `result.size() - 1` will give us a very **big positive integer**, we should use `result.size() < depth + 1` instead.
+3. Do not use `stack` to implement levelorder traversal because we may begin to traverse the next level without finishing the traversal of the current level.
+
+#### 2. Leetcode  107 Levelorder Traversal of Binary Tree Ⅱ
+
+#### 3. Leetcode 199 Right View of Binary Tree
+
+#### 4. Leetcode 637 Average Value of Each Level
+
+#### 5. Levelorder Traversal of N-ary tree
+
+#### 6. Max Value of Each Level
+
+#### 7. Fill Next Pointer with the Right Node
+
+#### 8. Fill Next Pointer with the Right Node Ⅱ
+
+#### 9. Max Depth of Binary Tree
+
+#### 10. Min Depth of Binary Tree
+
+### 6. Invert Binary Tree
+
+1. Essentially, we just need to invert two children nodes of each node. Therefore, we can choose whatever `traveral methods`. But for `recursive inorder traversal` and `iterative inorder traversal`, the original code will cause the left sub-trees to be inverted twice and the right sub-trees to remain the same, and we can change the `invert(root->right)` to `invert(root->left)` to avoid this or we can use the uniform iterative traversal, becuase we use `stack` to store the nodes in this case.
+
+### 7. Is Symmetric Binary Tree
+
+1. Notice that we need to compare the two nodes in the synnmetric places.
+
+### 8. Max Depth of Binary Tree
+
+### 9. Min Depth of Binary Tree
+
+1. Notice that the condition that the current node has no left child node and no right child node at the same time is the key.
+
+### 10. Number of Nodes in Complete Binary Tree
+
+1. When we recursively go deep from the left and right to the bottom seperately and get the `leftDepth` and `rightDepth`, if they are the same, the current tree is a `full binary tree`. If not, we can split it to left sub-tree and right sub-tree and recursively do the same action to these two sub-trees. Finally we can get all the **small** `full binary trees` and now we can go back recursively to sum the counts and get the final count.
+
+### 11. Is Balanced Binary Tree
+
+1. Sometimes we can assign a special value to the return value of the `recursive method` to represent another type of data.
+2. Notice the difference of `depth` and `height` and the corresponding methods to get them.
+
+### 12. All Pahts to the Leaf Nodes
+
+1. We should try to find the relationship between the current case and the **traversal** of binary tree, meaning when we solve the current problem, we should notice that if there comes to the **traversal** of binary tree? If it does, we should notice **which** traversal method we should use. For example, in this case, we need to record all the paths from the root node to the leaf nodes, so we will use the `preorder traversal`. Then it will help us construct the whole framework for solving the current problem.
+
+2. When it comes to the leaf nodes, we should notice that the termination condition for the recursion may not be `cur == nullptr` but `cur->left == nullptr and cur->right == nullptr`, and we also need to handle the case that `cur == nullptr`.
+
+3. One recursion corresponds to one backtrack.
+
+4. ```c++
+    std::vector<>::pop_back();
+    std::string::pop_back();
+    ```
+
+### 13. Sum of Values of Left Leaf Nodes
+
+1. The key is to find out the definition of  `left leaf nodes`: if the left child node is not `nullptr` and the two children nodes of this left child node are both `nullptr`, then this left child node is a `left leaf node`. In fact, this judgement adds an extra layer compared to the normal problems, because we need to judge if a node is a `left leaf nodes` throught its parent node **not itself**.
+
+### 14. The Value of the Lowest and Leftmost Node
+
+1. This problem involves the `depth` of the node, so if we want to use `recursive method` to solve it, we need to handle the `depth` part and in this case we use a parameter `depth` to record the depth of the current node and use `member variable` `m_MaxDepth` to record the depth of the  `lowest` node.
+
+### 15. Check the Sum of Paths to Leaf Nodes
+
+1. When does the `recursive function` need a `return value`: (Note that the discussion is based on whether we need to search the whole tree.)
+    1. If we just need to get one workable result, we need the `return value` to tell us we have found a suitable result and we can return now.
+    2. If we need to search the whole tree, whether we need a `return value` depends on whether we need to handle the `return value`.
+
+### 16. Construct a Binary Tree Based on Inorder and Postorder Traversal Sequences
+
+1. When it comes to split an array, we need to keep the spliting way the same, e.g., we always make the new interval be left closed and right open.
+2. If possible, don't create new `std::vector<>` during the traversal, we can just add two parameters to indicate the beginning and end of the new interval.
+
+### 17. Max Binary Tree
+
+1. Notice that we should split the array in a uniform way.
+
+### 18. Combine Two Binary Trees
+
+1. When it comes to use `iterative method` to compare two trees, we should notice the order in which the nodes enter the `queue` and  which nodes can be allowed to enter the `queue`.
+
+### 19. Search a Node in a Binary Search Tree
+
+1. For `BST`, if we want to use `iterative method` to search the node, we don't need the `stack` or `queue` to help us store nodes because we can directly find the next node to handle. As for normal binary trees, we need to **backtrack** from left to right or from right to left, so we need containers to temporarily store the nodes.
+
+### 20. Verify Binary Search Tree
+
+1. When it comes to `BST`, we can use `inorder traversal` to simplify the code.
+2. For this problem, we may set a global variable `CurMax` to record the current max value, but if there is a use case which has been set as `INT_MIN`, there will have problems. So we can just record the pre-accessed node, and every time we compare `cur->val` with `pre-val` and update `pre pointer`. This process can also be promoted to the case that we want to get the max value or min value of a ordered sequence, we can't simply set an initial **extremum**, but we should **compare** the previous value with the current value.
+
+### 21. Min Absolute Difference in BST
+
+### 22. Mode in BST
+
+### 23. Lowest Common Ancestor (LCA)
+
+1. `Postorder traversal` is naturally **retrospective** process and in this problem, we need to **backtrack**.
+
+### 24. LCA in BST
+
+1. The key for this problem is that when we traverse the `BST` from top to bottom, the first node whose value is between the value of `p` and the value of `q` is the `LCA`. Besides, as we don't have to handle the middle node, we don't care about the traversal order.
+
+### 25. Insert a Node to BST
+
+### 26. Delete a Node in BST
+
+### 27. Trim BST
+
+1. For `recursive method`, the key is to take advantage of the `return value` of the `recursive function`. For `iterative method`, we can firstly make the `root` node be in the correct interval, then make the left sub-tree and right sub-tree be in the correct interval separately.
+
+### 28. Turn Sorted Array to Balanced BST
+
+1. When to calculate `mid`, it's better to use `int mid = left + (right - left) / 2`.
+2. When it comes to `std::vector<>`, it's better to use `index` to operate the original `std::vector<>` instead of creating new `std::vector<>`.
+
+### 29. Turn BST to Greater Sum Tree
+
+
+
+
+
+
+
+
+
