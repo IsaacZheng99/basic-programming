@@ -488,11 +488,75 @@
 
 ### 29. Turn BST to Greater Sum Tree
 
+## 8. Backtrack
 
+**Knowledge Points**: `backtrack and recursion`, `backtrack and tree`, `three core elements of backtrack`, `prune`, `sort and prune`, `combination and partition problems`, `remove repetition: startIndex and nums[i] == nums[i - 1], used std::vector<bool> and nums[i] == nums[i - 1], unordered set`
 
+### 1. Basics
 
+1. `Backtrack` is a way for search.
+2. `Backtrack` is a by-product of `recursion`, and if there is `recursion`, there is `backtrack`.
+3. `Backtrack` is indeed `brute force` and it's not efficient. We can just `prune` it to make it a little more efficient.
+4. `Backtrack` can be abstracted to `tree structure`, because `backtrack` is use to solve problems like we want to recursively find subset in a set, and the size of the set is the width of the tree, while the depth of the recursion is the depth of the tree.
+5. Three core elements of `backtrack`:
+    1. The `parameters` and `return value` of the `recursive function (backtrack function)`.
+    2. The `termination conditions`, which generally is that it comes to the `leaf node`.
+    3. The `traversal process of backtrack search`.
 
+### 2. Combination
 
+1. If we simply use `brute force` to solve this problem, we need to write `k` layers of `for loop`, which is impossible when k is large. Instead, we use `backtrack method` to make `recursion` take the place of `for loop`.
 
+2. Don't forget to `prune`.
 
+### 3. Combination (Optimization)
+
+### 4. Sum of Combination Ⅲ
+
+### 5. Alphabet Combination of Telephone Number
+
+### 6. Sum of Combinations
+
+1. For repeatedly using elements, we can just pass `srartIndex = i` to the next layer, rather than `startIndex = i + 1` like before.
+2. For `pruning`, `sorting and then pruning` is a common way.
+
+### 6. Sum of Combinations Ⅱ
+
+1. The key of this problem is how to make sure that the `std::vector<>` can have repetitive elements but the `result` can't have repetitive combinations. We can add a `used` `std::vector<bool>` to mark the used elements, or we can just use `startIndex` to judge. Morever, if we use the `tree` structure to illustrate this problem, it will become we just avoid repetition along the current layer of the `tree`, but for the `branch` of the tree, it can have repetitive elements. So there are **two kinds** of `repetition`.
+
+### 7. Partition Palindrome String
+
+1. `Partition problems` are like `combination problems`, and one of the keys is to identify the cut line.
+
+### 8. Restore IP Address
+
+### 9. Subset
+
+1. For this problem, we need to collect **all** the nodes of the `tree`, rather than only the leaf nodes like before.
+
+### 10. Subset Ⅱ
+
+### 11. Non-Descending Subsequence
+
+1. We can't sort the original `std::vector<>` beforehand because this problem needs to find subsequence. Therefore, we can't use the repetition removal logic like `nums[i] == nums[i - 1]`. Instead, we need to create a `set` in each layer of the tree. Note that there should be an individual `set` in each layer and we don't need to `erase` elements because we **don't** need to **backtrack** these `sets`.
+2. However, when the original `std::vector<>` can be sorted, the `set` method is much **less** effective than the `used` method and `startIndex` method.
+
+### 12. Full Permutations
+
+1. For `permutation` problems, we need to use `used` `std::vector<bool>` to solve them.
+
+### 13. Full Permutations Ⅱ
+
+1. Fro `permutation` problems, the repetition removal along the `current layer` of the `tree` and the `branch` of the `tree` are both find, but the former one is more effective. (Draw the `tree` structure to compare.)
+
+    ```c++
+    if (i && nums[i] == nums[i - 1] && used[i - 1] = false) continue;  // repetition removal along the current layer
+    if (i && nums[i] == nums[i - 1] && used[i - 1] = true) continue;  // repetition removal along the branch
+    ```
+
+### 14. Reschedule Itinerary
+
+### 15. N-Queen
+
+### 16. Sudoku
 
