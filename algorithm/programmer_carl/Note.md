@@ -560,3 +560,64 @@
 
 ### 16. Sudoku
 
+## 9. Greedy Algorithm
+
+**Knowledge Points**: `consider one by one`
+
+### 1. Basics
+
+1. `Greedy algorithm` aims to get the **current** optimal solution of each stage and **finally** get the optimal solution. Here are two examples:
+    1. There are some coins and we can take `10` of them, then how to get the maximum money? The `greedy algorithm` is to get the coin with the maximum value each time.
+    2. For `Knapsack Problems`, we can't simply get the staff with maxmium weight or value each time and we need to use `dynamic programming`.
+2. It's **not** easy to determine whether `greedy algorithm` can be used for solving the current problem and we may need to use `mathematical induction` or `reduction to absurdity` to verify. Therefore, if the simulation process of `greedy algorithm` seems to work, we can try it. Otherwise, we may need to use `dynamic programming`.
+
+### 2. Distribute Cookies
+
+### 3. Swinging Sequence
+
+1. If we use `greedy algorithm`, the key is to keep all the `peek values` and delete the other values along each slope. Note that we need to handle the case that there is a flat slope.
+2. We can also use `dynamic programming` to solve this problem. And we can use `segment tree` to save time.
+
+### 4. Max Sum of Subsequence
+
+### 5. Best Time to Buy and Sell Stocks Ⅱ
+
+### 6. Jumping Game
+
+### 7. Jumping Game Ⅱ
+
+### 8. Max Sum After K Times of Inversion
+
+1. We can sort the original `std::vector<int>` according to the `absolute value` not just the value, therefore we don't need to compare `num[curIndex]` with `num[curIndex - 1`].
+2. In fact, there are two times of `greedy algorithm` being used.
+
+### 9. Gas Station
+
+### 10. Distribute Candies
+
+1. **Two** times of `greedy algorithm`, one is to compare the current value with the left side value and the other is to compare the current value with the right side value. Note that in the second case, the value should be `candies[i - 1] = std::max(candies[i - 1], candies[i] + 1)`, which can guarantee the value satisfies the two cases at the same time. Besides, when comparing the value with the right side value, as the value with smaller index is rely on the value with larger index, we should traverse from right to left.
+
+### 11. Lemonade Change
+
+### 12. Reconstruct Queue Based on Heights
+
+1. When there are more than one dimension, we should consider one by one. If we consider two or more demensions together, it is very likely to make a mistake.
+
+### 13. Ignite the Ballons with the Minimum Number of Arrows
+
+### 14. No Overlapping Intervals
+
+1. When it comes to `delete` elements in arrays like `std::vector<>`, we can use temporary values to represent the interval or we can just change the value of the being removed element to **pretend** it has been removed.
+
+### 15. Divide Letter Intervals
+
+### 16. Combine Intervals
+
+1. Similar to `14. No Overlapping Intervals`, we can change the elements which have been put into the **result** `std::vector<std::vector<int>>` to **pretend** the intervals have been combined.
+
+### 17. Monotonically Ascending Numbers
+
+1. In this problem, we need to traverse from the digit in the **lower** place, because if we traverse from the digit in the higher place, and we find an unsuitable digit, after we modify it, the former digits can be  influenced, but we have traversed them. To sum up, the order in which we traverse depends on whether the modification will **influence** the digits we have traversed. Note that here the `influence` means we have to re-traverse the traversed digits and judge them again and again. For example, in this problem, even if we traverse from the digit in the lower place, when the digit in the higher place is unsuitable, we need to modify the digits lower than it all to `9` and some of them have been modified by `nums[i + 1] -= 1`. But we don't need to judge them again, we just modify them in a uniform way.
+
+### 18. Monitor Binary Tree
+
