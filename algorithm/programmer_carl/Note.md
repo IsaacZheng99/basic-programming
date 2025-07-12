@@ -827,3 +827,28 @@
 
 ### 43. Longest Palindrome Subsequence
 
+## 11. Monotonic Stack
+
+**Knowledge Points**: `monotonic stack`, `the relationship between the monotonicity of the monotonic stack and whether we want to find the first larger or smaller element`
+
+### 1. Daily Temperature
+
+1. When to use `monotonic stack`: when we want to get the index of elements which are larger or smaller than any element in a `1-D` array. `Monotonic stack` is essentially using space to exchange time and specifically we can simply put the **index** of element into the `stack`.
+
+### 2. Next Bigger Element Ⅰ
+
+### 3.  Next Bigger Element Ⅱ
+
+### 4. Receive Rainwater
+
+1. There are two ways to solve this problem:
+    1. Calculate based on the **columns**. Specifically, we need to find the **maximum** elements to the left and right of the current element respectively and we don't need to consider the first and last elements. We can use `double pointers` for this way.
+    2. Calculate based on the **rows**. Specifically, we need to find all the grooves and sum them up, and in this case we need to get the **first larger** elements to the left and right of the current element respectively . We can use `monotonic stack` for this way, and we can handle three cases one by one: `height[stack.top()] > height[i]`, `height[stack.top()] == height[i]` and `height[stack.top()] < height[i]` or we can simplify these three cases.
+2. `Monotonic stack` can help find the **first larger** elements to the left and right of the current element **at the same time** and we **don't** need to use two stacks (`leftStack` and `rightStack`).
+
+### 5. Largest Rectangle in the Bar Chart
+
+1. For `brute force`, we can get the **first smaller** elements to the left and to the right of the current element respectively and get the current largest rectangle by `heights[i] * (rightIndex - leftIndex + 1)`. I personally think this method is like `greedy algorithm`.
+2. For `monotonic stack`, we also need to get the first smaller elements to the left and the first element to the right of the current element, and we can handle three cases one by one: `height[stack.top()] < height[i]`, `height[stack.top()] == height[i]` and `height[stack.top()] > height[i]` or we can simplify these three cases. Note that we need to add two **zeros** in the first and last position of the original `std::vector<int> heights` to handle the case where `std::vector<int> heights` is monotonic.
+3. `Monotonic stack` can help find the **first smaller** elements to the left and right of the current element at the same time and we **don't** need to use two stacks (`leftStack` and `rightStack`).
+
