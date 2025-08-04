@@ -852,3 +852,363 @@
 2. For `monotonic stack`, we also need to get the first smaller elements to the left and the first element to the right of the current element, and we can handle three cases one by one: `height[stack.top()] < height[i]`, `height[stack.top()] == height[i]` and `height[stack.top()] > height[i]` or we can simplify these three cases. Note that we need to add two **zeros** in the first and last position of the original `std::vector<int> heights` to handle the case where `std::vector<int> heights` is monotonic.
 3. `Monotonic stack` can help find the **first smaller** elements to the left and right of the current element at the same time and we **don't** need to use two stacks (`leftStack` and `rightStack`).
 
+## 12. Graph Theory
+
+**Knowledge Points**:
+
+`variants of graph: directed graph, undirected graph, weighted directed graph, weighted undirected graph`
+
+`degree`
+
+`connected graph`, `strongly connected graph`
+
+`connected component`, `strongly connected component`
+
+`storage of graph: naive storage, adjacent matrix, adjacent list`
+
+`traversal of grapg: dfs, bfs`
+
+`main functions of disjoint set union` 
+
+`how to join two elements`
+
+`join()`, `find()`, `isSame()`, `init()`
+
+`path compression`
+
+`join according to rank`
+
+`complexity of disjoint set union with path compression`
+
+`minimum spanning tree`
+
+`Prim algorithm: three core elements, minDist array`
+
+`Kruskal algorithm`
+
+`topological sort: two steps`
+
+`Dijkstra algorithm: three core elements, minDist array, naive edition and heap optimization edition`
+
+`Bellman & Ford algorithm: naive edition and queue improved edition (SPFA)`
+
+`Floyd algorithm: dynamic programming`
+
+`A* algorithm: heuristic function`
+
+### 1. Basics
+
+1. `Graph` is constituted by `nodes` connected by `edges`.
+
+2. Variants of `graph`: `directed graph`, `undirected graph`, `weighted directed graph`, `weighted undirected graph`.
+
+3. `Degree` is the number of `edges` connected to the current `node`.
+
+4. `Connected graph` is an `undirected graph` where any two `nodes` can reach each other.
+
+    `Strongly connected graph` is a `directed graph` where any two `nodes` can reach each other.
+
+5. `Connected component` is a `maximal connected subgraph` of a `undirected graph`.
+
+    `Strongly Connected component` is a `maximal connected subgraph` of a `directed graph`.
+
+6. Storage of `graph`:
+
+    1. `Naive storage`: directly store the `edges` by, e.g., a `2-D array` but this storage method is not efficient for like searching because we need to traverse all the elements of the `2-D array`.
+    2. `Adjacent matrix`: use a `2-D array` to store the `graph`, where the `indices` are the `nodes` and the `values` are the `values of the edges`. This storage is suitable for `dense graphs` and when it comes to traverse all the `edges`, this method is inefficient.
+    3. `Adjacent list`: use a `1-D array` and `lists` to store the `graph`, where the `array` stores the `nodes` and the corresponding `list` stores the adjacent `nodes` and the size of the `list` depends the numbers of `edges`. This storage is suitable for `sparse graph` and when it comes to check whether there is a `edge` between two `nodes`, this method is inefficient.
+
+7. Traversal of `graph`: `dfs`, `bfs`.
+
+### 2. DFS Basics
+
+1. Three core elements of `dfs`:
+
+    1. The `parameters` and `return value` of the `recursive function (dfs function)`. We ususlly need to store all the paths and the current path, and we can use `member variables` or `global variables` to avoid too many parameters in the `recursive function`.
+
+        ```c++
+        std::vector<std::vector<int>> result;
+        std::vector<int> curPath;
+        ```
+
+    2. The `termination conditions`.
+
+    3. The `searching paths` starting from the current `node`, which we usually use `for loop` to handle them.
+
+### 3. All Reachable Paths
+
+### 4. BFS Basics
+
+1. `BFS` is suitable for shortest path problems.
+
+### 5. Island Problems (1): Number of Islands (DFS)
+
+1. When we traverse a land which has not been visited, the result is added by `1`.
+
+### 6. Island Problems (2): Number of Islands (BFS)
+
+### 7. Island Problems (3): Maximum Area of Islands
+
+### 8. Island Problems (4): Total Area of the Isolated Islands
+
+1. We can firstly traverse from the grids on the boundaries and set the lands (`1`) to rivers (`0`). Then we simply need to traverse all the grids and count number of  `1`.
+
+### 9. Island Problems (5): Sink the Isolated Islands
+
+### 10. Island Problems (6): Water Flows
+
+### 11. Island Problems (7): Build the Largest Island
+
+1. We can firstly get areas of all the islands and then check whether they can be connected. The key is to **mark** the grid as the index of which island it belongs to.
+
+### 12. Island Problems (8): Perimeter of the Island
+
+### 13. String Solitaire
+
+### 14. Complete Reachability of Directed Graph
+
+### 15. Disjoint Set Union Basics
+
+1. `Disjoint set union` is always used for `connectivity problems`, i.e., judging whether two elements are in the same set.
+
+2. Two main functions of `disjoint set union`:
+
+    1. Add two elements to a set.
+    2. Judge whether two elements are in the same set.
+
+3. How to add two elements to a set
+
+    1. If we use `set` or `map`, there will be a lot of `sets` and `values` of the `map`.
+    2. If we use a `2-D array`, we need to traverse all the elements of the `array`.
+    3. The above implementations are inefficient in `space` and `time`. If we focus on the `connectivity`, we can simply use a `1-D array`, where `father[A] = B, father[B] = C` means `A`, `B`, and `C` are connected. (Note that the plain `disjoint set uniont` can be used for `undirected graph` but not for `directed graph`.)
+
+4. `Path compression`: for the `root seeking function` `find()`, the recurssive preocess is slow and we can simply use `return father[u] = find(father[u])` to compress the recurssive path. To sum up, the `find()` function can be written as:
+
+    ```c++
+    int find(int u)
+    {
+        return u == father[u] ? father[u] : father[u] = find(father[u]);
+    }
+    ```
+
+5. Template code of `disjoint set union`:
+
+    Note that we need to join the root `nodes` rather the current `nodes`, so we can't replace the code of `join()` with the code of `isSame()`.
+
+    ```c++
+    int n = 1001;
+    std::vector<int> father(n);
+    
+    void init()
+    {
+        for (int i = 0; i < n; i++)
+            father[i] = i;
+    }
+    
+    int find(int u)
+    {
+        return u == father[u] ? father[u] : father[u] = find(father[u]);
+    }
+    
+    bool isSame(int u, int v)
+    {
+        u = find(u);
+        v = find(v);
+        
+        return u == v;
+    }
+    
+    void join(int u, int v)
+    {
+        u = find(u);
+        v = find(v);
+        
+        if (u == v)
+            return;
+        
+        father[v] = u;
+    }
+    ```
+
+6. Besides `path compression`, we can also join two sets according to the `rank` (merge the graph with **lower** `rank` into the graph with **higher** `rank`), but this method will not make the graph as flat as `path compression` does and thus less efficient.
+
+7. `Complexity` of `disjoint set union` with `path compression`:
+
+    1. `Space complexity`: `O(n)` comes from `father[]`.
+    2. `Time complexity`: between `O(logn)` and `O(1)` and as the query and merge operations increase, the `time complexity` will approach to `O(1)`. In the beginning, we need to search a `N-ary tree` and the `time complexity` is `O(logn)`, but after `path compression`, it will become `O(1)`.
+
+### 16. Find Existed Path
+
+### 17. Redundant Connection
+
+### 18. Redundant Connection Ⅱ
+
+1. We can calssify the cases according to the `indegree`:
+    1. If there is a `node` with `indegree` equal to `2`: we need to choose one `edge` pointing to this `node` to delete.
+    2. If there is no `node` with `indegree` equal to `2`: in this case there is a circle and we need to traverse the `edges` and delete the `edge` which makes the circle.
+
+### 19. Prim Algorithm for Minimum Spanning Tree
+
+1. `Prim algorithm` takes the `greedy` strategy, and selects the `node` **closest** to the `MST` and add it to `MST` every time. (Note that `MST` is `undirected graph`.)
+2. Three core elements of `Prim algorithm`:
+    1. Select the `node` closest to the spanning tree.
+    2. Add the closest `node` to the spanning tree.
+    3. Update the distance from non-spanning tree `nodes` to the spanning tree. (Update the `minDist` array.)
+3. The `time complexity` of `Prim algorithm` is `O(n^2)`, where `n` is the number of `nodes`.
+
+### 20. Kruskal Algorithm for Minimum Spanning Tree
+
+1. `Kruskal algorithm` also takes the `greedy` strategy, and choose the `edge` with minimum weight every time. It takes advantage of `diskoint set union` to check whether the current `edge` is legal.
+2. Essentially, `Prim algorithm` operates the `nodes` while `Kruskal algorithm` operates the `edges`. If the graph has many `nodes` but a few `edges`, it's better to use `Kruskal algorithm`. Therefore, `dense graph` benefits `Prim algorithm` and `sparse graph` benefits `Kruskal algorithm`.
+3. The `time complexity` of `Kruskal algorithm` is `O(eloge)`, where `e` is the number of `edges`.
+
+### 21. Topological Sort
+
+1. `Topological sort` can transfer a `directed graph` into a **linear** sort and check whether there is a circle. If there is a circle, meaning there is circular dependency, we can't do linear sort.
+2. Two steps of `topological sort`:
+    1. Find a `node` with indegree of `0` and add it to the result set.
+    2. Delete the `node` from the graph.
+
+### 22. Dijkstra Algorithm (Naive Edition)
+
+1.  `Dijkstra algorithm` can get shortest paths from the starting `node` to **all** the other `nodes`, but the weights can't be negative. If one of the weights is negative, perhaps `Dijkstra algorithm` can't find the correct minimum path because the visited `nodes` can be visited again and thus the `minDist` values of them can't be updated if there is a `edge` with negative weight appearing sequentially.
+
+2. `Dijkstra algorithm` also takes the `greedy` strategy and it continuously searches for the unvisited `node` closest to the starting `node`.
+
+3. Three core elements of `Dijkstra algorithm`:
+
+    1. Select the closest unvisited `node`.
+    2. Mark the `node` as visited.
+    3. Update the distances of unvisited `nodes` to the starting `node`. (Update the `minDist` array.) 
+
+    The core elements of `Dijkstra algorithm` are similar to `Prim algorithm`'s.
+
+4. How to `debug`: print the `minDist` in each iteration and check the values.
+
+5. Difference between `Dijkstra algorithm` and `Prim algorithm for MST`: the only difference is in the third step, for the former algorithm, it updates the distances of `nodes` to the **starting node**, while the latter algorithm updates the distances from `nodes` to the **spanning tree**.
+
+    ```c++
+    // Dijkstra algorithm
+    for (int i = 1; i <= N; i++)
+    {
+        if (visited[i] == false && graph[curNode][i] != INT_MAX || minDist[curNode] + graph[curNode][i] < minDist[i])
+            minDist[i] = minDist[curNode] + graph[curNode][i];
+    }
+    
+    // Prim algorithm for MST
+    for (int i = 1; i <= N; i++)
+    {
+        if (isInTree[i] == false || graph[curNode][i] < minDist[i])
+            minDist[i] = graph[curNode][i];
+    }
+    ```
+
+    Note that `Prim algorithm` can handle negative weights.
+
+6. The `time complexity` of `Dijkstra algorithm (naive edition)` is `O(N^2)`, where `N` is the number of `nodes`.
+
+### 23. Dijkstra Algorithm (Heap Optimization Edition)
+
+1. We know that the `time complexity` of `Dijkstra algorithm` is `O(N^2)`, where `N` is the number of `nodes`. Is it possible to optimize it when the number of `nodes` is large while the number of edges is small?
+2. Optimization:
+    1. Firstly, we can focus on the `edges` and we can use `adjacent list` to opimize when the number of edges is small.
+    2. Then, for the first core element: `select the closest unvisited node`, we can try to use a `min heap` to get the `node` with shortest distance each time. Therefore, the outer loop is no longer `O(n)` because we just need to maintain a `min heap` and handle all the `edges` one by one.
+3. The `time complexity` of `Dijkstra algorithm (heap optimization edition)` is `O(ElogE)`, where `E` is the number of edges.
+4. We can also use `adjacent matrix` to achive the `heap optimization edition`, but for the third core element: `update the distances of unvisited nodes to the starting node (update the minDist array) `, we need to traverse the `adjacent matrix`, leading to the `time complexity` being `O(E(logE + N))`.
+
+### 24. Bellman & Ford Algorithm (Naive Edition)
+
+1. We know that `Dijkstra algorithm` can't solve graphs with `edges` having negative weights, so here comes `Bellman & Ford algorithm`.
+
+2. The core of `Bellman & Ford algorithm` is to `relax all the edges` for `n - 1` times, where `n` is the number of `nodes`.
+
+    1. The code of `relaxing all the edges` is like:
+
+        ```c++
+        if (minDist[B] > minDist[A] + weight(A, B))
+            minDist[B] = minDist[A] + weight(A, B);
+        ```
+
+        We can also write it like this, which is like `dynamic programming`:
+
+        ```c++
+        minDist[B] = std::min(minDist[B], minDist[A] + weight(A, B));
+        ```
+
+        where we apart the question into multiple child questions and get the global solution iteratively.
+
+    2. The reason of `n - 1` times is that there are at most `n - 1` `edges` between any two `nodes` in a graph without `negative weight circle`, and for the `k-th` `relaxation`, we can find shortest paths with maximum `k` `edges` and sometimes it may converge in advance, meaning the current shortest path may have more than `k` `edges`. Then we need to iterate for `n - 1` times to get shortest paths with maximum `n - 1` `edges`.
+
+3. The `time complexity` of `Bellman & Ford algorithm (naive edition)` is `O(N * E)`, and the `space complexity` is `O(N)` (without considering the space of the graph), where `N` is the number of `nodes` and `E` is the number of `edges`.
+4. Note that if the `minDist[] array` still changes after `n - 1` `relaxation`, we can know that there is a `negative weight circle` in the `graph`.
+
+### 25. Bellman & Ford Algorithm (Queue Improved Edition)
+
+1. `SPFA`: shortest path faster algorithm.
+2. In the naive edition, we always `relax` **all** the edges each time, but there are some `edges` are invalid for updating the shortest path. We only need to `realx` `edges` where the starting `nodes` were updated in the last `relaxation` and we can use `queue` or `stack` to record them (the order doesn't matter). Note that when we push a `node` into the `queue`, we can use `if (visited[edge.end] == false)` to check whether it has been in the `queue`, and in this way we can avoid repeated updates. (I personally think we can simply use `std::unordered_set` to replace the `queue and visited[]`.)
+3. The `time complexity` of `Bellman & Ford algorithm (queue improved edition)` is `O(K * N)`, where `K` is a constant and `N` is the number of `nodes`. When the graph is dense, `K` levels off to `E`, which is close to the `time complexity` of `Bellman & Ford algorithm (naive edition)`. Note that we don't consider the `time complexity` of `std::queue<>::push()` and we are just discussing the overall `time complexity`.
+
+### 26. Bellman & Ford Algorithm for Testing Negative Weight Circle
+
+1. For `Bellman & Ford algorithm (naive edition)`, we can simply iterate for `n` times and check whether `minDist[]` still changes at the `n-th` time.
+
+    For `Bellman & Ford algorithm (queue improved edition)`, we know that in the worest case, every `nodes` will enter the `queue` for `n - 1` times when all the `nodes` are connected to other `nodes`. Therefore, when a `node` enters the `queue` over `n - 1` times, there is a `negative weight ciecle`. Note that we need to increase the counts when the current `node` is not in the `queue`. (**TODO**: I personally don't know the reason why we need to increase the counts in this way, and I have looked for some analysis but I don't think they give me the correct explanation.)
+
+### 27. Bellman & Ford Algorithm for Single-Source Limited Shortest Path
+
+1. In this problem, the number of `nodes` on the path is limited as `k`, meaning the maximum length of the shortest path is `k + 1`. Therefore, we can `relax all the edges` for `k + 1` times instead of `n - 1` times.
+
+    However, we know that the `relaxation` may lead to convergence in advance, e.g., after the first `relaxtion`, the `minDist[] array` may get a shortest path with length larger than `1`. Therefore, we need to record the `oldMinDist[] array` and update `curMinDist[edge.end] = oldMinDist[edge.start] + edge.weight` when `oldMinDist[edge.start] != INT_MAX`.
+
+### 28. Floyd Algorithm
+
+1. For `Dijkstra algorithm` and `Bellman & Ford algorithm`, they solve the **single-source shortest path** problem. But `Floyd algorithm` can solve **multi-sources shortest path** problem where there are multiple sources and multuple ends.
+
+    Besides, `Floyd algorithm` can handle **negative** weights and the core is `dynamic programming`.
+
+2. Next we analyze `Floyd algorithm` based on the `five core elements` of `dynamic programming`:
+
+    1. The meaning of `dp[]` and `index`:
+
+        1. We use `grid[i][j][k]` to do `dynamic programming` and store the graph at the meanwhile.
+        1. The meaning of `grid[i][j][k]` is the length of the shortest path from `i` to `j` with several `nodes` from `[1, ..., k]` as the middle nodes.
+
+    2. The `recursive formula`:
+
+        There are two cases:
+
+        1. The corresponding path of `grid[i][j][k]` passes `node` `k`: `grid[i][k][k - 1] + grid[k][j][k - 1]`  .
+        2. The corresponding path of `grid[i][j][k]` doesn't pass `node` `k`: `grid[i][j][k - 1]`.
+
+        Therefore we have `grid[i][j][k] = std::min(grid[i][k][k - 1] + grid[k][j][k - 1], grid[i][j][k - 1])`.
+
+    3. The `initialization` of `dp[]`.
+
+        1. For each input `edge`, we have `grid[from][to][0] = weight`. Note that here `k = 0`, meaning there are no middle `nodes` because this is an existing `edge`.
+        2. I personally initialize `grid[i][i][k] = 0` but the reference solution doesn't do it.
+
+    4. The `order` of traversal.
+
+        1. For `i` and `j` , the traversal orders don't matter.
+        2. For `k`, we need to traverse it in the outermost loop because we need to leverage the `dp[]` value of `k - 1` for all the `i` and `j`.
+
+    5. Use an `example` to derive `dp[]`.
+
+3. The `time complexity` of `Floyd algorithm` is `O(N^3)` and the `space complexity` is `O(N^3)` where `N` is the number of `nodes`. It is suitable for `dense graph` and the case where the number of source `nodes` is large. If the number of source `nodes` is small, we can use `Dijkstra algorithm` for multiple times.
+
+### 29. A* algorithm
+
+1. For this problem, we can simply use `BFS` to get the shortest path, but it costs a lot when the size of the grid is big and `n` is large.
+
+2. `A* algorithm` is an improved version of `BFS` (shortest path in an unweighted `graph`) and `Dijkstra algorithm` (shortest path in a wighted `graph`).
+
+3. The core of `A* algorithm` is the `heuristic function`, which determines the order in which the elements are retrieved. Basically speaking, `BFS` get the elements from the `queue` one by one, which results in search in a circle in this problem, while `A* algorithm` can search in some direction. The key difference is the order in which we get the elements:
+
+    ```c++
+    // BFS
+    int x = q.front(); q.pop();
+    int y = q.front(); q.pop();
+    ```
+
+4. `A* algorithm` will sort the elements in the `queue` based on the weight: `F = G + H`, where `G` is the distance from the starting `node` to the current `node` and `H` is the distance from the current `node` to the end `node`. Note that the distance can be `Manhattan distance`, `Euclidean distance`, and `Chebyshev distance`, and in this problem we need to use `Euclidean distance`.
+
