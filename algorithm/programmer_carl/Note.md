@@ -10,9 +10,7 @@
 
 ### 2. Binary Search
 
-1. For `mid`, the standard approach is to **round down**: `int mid = left + (right - left) / 2` because if we use round down, it may lead to endless loop (I don't really know the mathematical reason).
-
-2. For `boundary checking`, we need to focus on the **Principle of cyclic invariants**, which is the **invariant definition of interval** in this case.
+1. For `boundary checking`, we need to focus on the **Principle of cyclic invariants**, which is the **invariant definition of interval** in this case.
 
     Specifically, there are **three** aspects: the initial values of `left` and `right`, the `condition of the while loop`, and the `update of left and right`.
 
@@ -26,7 +24,7 @@
         int left = 0;
         int right = nums.size() - 1;
         
-        while (left < right)
+        while (left <= right)
         {
             //...
             {
