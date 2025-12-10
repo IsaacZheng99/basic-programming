@@ -46,7 +46,7 @@
 ### 4. Sorted Squares
 
 1. The difference between `std::vector<>::reserve()`  and `std::vector<>::resize()`.
-2. Think carefully where the `pointers` start from.
+2. Think carefully where the `pointers` start from. For this case, the maximum square number must be the square of the leftmost or the rightmost number.
 
 ### 5. Minimum Length of Sub-array
 
