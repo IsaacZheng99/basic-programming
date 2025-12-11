@@ -233,7 +233,7 @@
     }
     ```
 
-    We can simply the code:
+    We can simplify the code:
 
     ```c++
     bool repeatedSubstringPattern(std::string s)
