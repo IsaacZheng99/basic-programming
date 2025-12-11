@@ -195,7 +195,7 @@
 ### 4. Reverse Words
 
 1. Delete space:
-    1. We can use `std::string::erase()` to delete any element in a `std::string` but it has a complexity of `O(n)`. In this case, we can use `double pointers` to delete space.
+    1. We can use `std::string::erase()` to delete any element in a `std::string` but it has a complexity of `O(n)`. In this case, we can use `double pointers` to delete space. Specifically, the slow pointer records where the character should be at and the faster pointer searches for the next suitable character, and finally we use `std::string::resize()` to get the new `string`.
     2. We can handle `spaces` in a uniform way, i.e., we ignore all the original spaces and when it comes to the **middle** space, we **manually add** one space.
 2. Reverse: reverse globally, then reverse locally.
 
