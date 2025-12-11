@@ -278,7 +278,7 @@
 
 1. In `C++`, the `std::stack` and `std::queue` **don't** provide `iterator` to iterate the elements.
 
-2. We can tack `std::vector`, `std::list` or `std::deque` as the underlying container. In `SGI STL`, the default container of `std::stack` and `std::queue` is `std::deque`. We can call `std::stack` and `std::queue` as `container adapter`.
+2. We can take `std::vector`, `std::list` or `std::deque` as the underlying container. In `SGI STL`, the default container of `std::stack` and `std::queue` is `std::deque`. We can call `std::stack` and `std::queue` as `container adapter`.
 
     ```c++
     std::stack<int, std::vector<int>> stack;
