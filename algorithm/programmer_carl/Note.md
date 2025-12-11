@@ -162,7 +162,7 @@
 
 1. No need to use `hash table`, use `double pointers`.
 2. We can `prune` to make it faster.
-3. We need to remove duplicates and the key is where to write the removing code.
+3. We need to remove duplicates and the key is where to write the removing code. In this case, we need to write the code right after every time we find an answer.
 
 ### 9. Sum of Four Numbers
 
