@@ -214,7 +214,7 @@
         4. For `"aaab"`, it's `0`.
     3. `Get next array`:
         1. The index `j` is not only the index of the end of the prefix, but also the length of the longest common prefix and suffix.
-        2. `Go back`: `j = next[j - 1]` can help us go back becasue we have matched prefix1 and suffix1 until `j` and `next[j - 1]` tells we have also matched another pair of predix2 and suffix2 in the predix1. By conveying the same substrings, we can use `next[j - 1]` to find the matched pair.
+        2. `Go back`: `j = next[j - 1]` can help us go back becasue we have matched prefix1 and suffix1 until `j` and `next[j - 1]` tells where we should go back to. By conveying the same substrings, we can use `next[j - 1]` to find the matched pair.
     4. Summary: the `next array` is the key and in the `get next array` and `match` processes, there are two commonalities: one is when the two characters are different, we need to **go back**, the other one is when the two characters are same, the `i` and `j` pointers will move forward together.
 
 ### 7. Repeated Substring
