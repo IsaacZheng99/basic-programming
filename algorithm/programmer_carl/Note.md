@@ -441,6 +441,7 @@
 
 1. When it comes to split an array, we need to keep the spliting way the same, e.g., we always make the new interval be left closed and right open.
 2. If possible, don't create new `std::vector<>` during the traversal, we can just add two parameters to indicate the beginning and end of the new interval.
+3. For cutting the `inorder vector`, we just need to find where the `root node` is in the original `inorder vector` and for cutting the `postorder vector`, we can't find a referenced node but we can keep the sizes of the new `inorder vector` and the new `postorder vector` the same.
 
 ### 17. Max Binary Tree
 
