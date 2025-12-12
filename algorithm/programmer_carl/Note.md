@@ -408,7 +408,7 @@
 ### 11. Is Balanced Binary Tree
 
 1. Sometimes we can assign a special value to the return value of the `recursive method` to represent another type of data.
-2. Notice the difference of `depth` and `height` and the corresponding methods to get them.
+2. Notice the difference of `depth` and `height` and the corresponding methods to get them. Basically, we need to use `preorder traversal` to get the `depth` and `postorder traversal` to get the `height`.
 
 ### 12. All Pahts to the Leaf Nodes
 
