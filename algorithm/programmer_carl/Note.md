@@ -393,7 +393,7 @@
 
 ### 7. Is Symmetric Binary Tree
 
-1. Notice that we need to compare the two nodes in the synnmetric places.
+1. Notice that we need to compare the two nodes in the symmetric places.
 
 ### 8. Max Depth of Binary Tree
 
