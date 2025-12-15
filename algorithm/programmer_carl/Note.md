@@ -466,7 +466,7 @@
 
 ### 23. Lowest Common Ancestor (LCA)
 
-1. `Postorder traversal` is naturally **retrospective** process and in this problem, we need to **backtrack**.
+1. In this problem, we need to check **from bottm to up** to find the `LCA`, which is a **backtracking** process and `postorder traversal` is naturally a **backtracking** process. Speciafically, every time we find `p` or `q`, we transport it to the `parent node`, meaning we have found at least one node of `p` and `q` so far.
 
 ### 24. LCA in BST
 
