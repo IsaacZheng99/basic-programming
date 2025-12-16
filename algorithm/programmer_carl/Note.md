@@ -562,6 +562,8 @@
 
 ### 16. Sudoku
 
+1. The key is to find when to return `true` and `false`. Specifically, when all the numbers don't fit in the current position, we need to return `false` and it will backtrack and when all the position have been put a number into, we need to return `true` and it will pass `true` from bottom to up and we will get the final board.
+
 ## 9. Greedy Algorithm
 
 **Knowledge Points**: `consider one by one`
