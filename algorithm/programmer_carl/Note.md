@@ -526,6 +526,7 @@
 ### 7. Partition Palindrome String
 
 1. `Partition problems` are like `combination problems`, and one of the keys is to identify the cut line.
+1. We can use `dynamic programming` to optimize the check process, rather than `while` or `for` loop.
 
 ### 8. Restore IP Address
 
