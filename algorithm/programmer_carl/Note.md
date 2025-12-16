@@ -556,6 +556,8 @@
 
 ### 14. Reschedule Itinerary
 
+1. We can use `std::unordered_map<std::string, std::map<string, int>> ticketsMap` instead of `std::unordered_map<std::string, std::vector<std::string>> ticketsMap` to save time because the `erase()` action of `std::vector<>` takes lots of overhead.
+
 ### 15. N-Queen
 
 ### 16. Sudoku
