@@ -543,7 +543,7 @@
 
 ### 12. Full Permutations
 
-1. For `permutation` problems, we need to use `used` `std::vector<bool>` to solve them.
+1. For `permutation` problems, we need to use `std::vector<bool> used` to solve them, which helps to check whether the current number has beed used because the `for loop` always begins from `0`. Morever, the `used` `vector` can work for `repetition removal` in the meanwhile, see more information in `13. Full Permutations Ⅱ`.
 
 ### 13. Full Permutations Ⅱ
 
