@@ -592,6 +592,8 @@
 
 ### 7. Jumping Game Ⅱ
 
+1. Note that `result += 1` serves for `curDistance = nextDistance`, i.e., `nextDistance`.
+
 ### 8. Max Sum After K Times of Inversion
 
 1. We can sort the original `std::vector<int>` according to the `absolute value` not just the value, therefore we don't need to compare `num[curIndex]` with `num[curIndex - 1`].
