@@ -601,6 +601,9 @@
 
 ### 9. Gas Station
 
+1. Solution 1: We can record the **minimum accumulated rest** and if it is less than `0` and the total accumulated rest is greater than `0`, we can traverse from end to start and find the index where we can make up the **minimum accumulated rest**.
+2. Solution 2: We can record the **current accumulated rest **and if it is less than `0`, it means any position in the interval `[0, i]` can't be the start position and we need to reset it to `0` and accumulate it from the next position, i.e, `i + 1`.
+
 ### 10. Distribute Candies
 
 1. **Two** times of `greedy algorithm`, one is to compare the current value with the left side value and the other is to compare the current value with the right side value. Note that in the second case, the value should be `candies[i - 1] = std::max(candies[i - 1], candies[i] + 1)`, which can guarantee the value satisfies the two cases at the same time. Besides, when comparing the value with the right side value, as the value with smaller index is rely on the value with larger index, we should traverse from right to left.
