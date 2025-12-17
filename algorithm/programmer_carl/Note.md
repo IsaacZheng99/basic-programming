@@ -588,6 +588,8 @@
 
 ### 6. Jumping Game
 
+1. We can just update the `cover range`, not the `next index` to simplify the code.
+
 ### 7. Jumping Game Ⅱ
 
 ### 8. Max Sum After K Times of Inversion
