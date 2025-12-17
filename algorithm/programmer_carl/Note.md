@@ -632,6 +632,11 @@
 
 ### 18. Monitor Binary Tree
 
+1. We can use three states to identify the current node:
+    1. There is a camera in the current node;
+    2. The current node is covered by a camera from other nodes;
+    3. The current node is not covered.
+
 ## 10. Dynamic Programming
 
 **Knowledge Points**: `dynamic programming vs. greedy algorithm`, `five core elements`, `0-1 backpack`, `rolling array`, `traversal order of 0-1 backpack when using rolling array`, `traversal order of complete backpack when dealing with combination and permutation with rolling array`, `tree based dynamic programming`, `Levenshtein distance`
