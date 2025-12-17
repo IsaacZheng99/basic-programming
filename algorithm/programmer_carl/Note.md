@@ -612,7 +612,7 @@
 
 ### 12. Reconstruct Queue Based on Heights
 
-1. When there are more than one dimension, we should consider one by one. If we consider two or more demensions together, it is very likely to make a mistake.
+1. When there are more than one dimension, we should consider one by one. If we consider two or more demensions together, it is very likely to make a mistake. In this case, if the `heights` are the same, we need to rank according to `lhs[1] < rhs[1]`, otherwise we rank according to `lhs[0] > rhs[0]`.
 
 ### 13. Ignite the Ballons with the Minimum Number of Arrows
 
