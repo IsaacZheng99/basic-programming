@@ -718,7 +718,7 @@
 
 1. For `brute force`, we can use `backtrack`.
 2. In this case, the weight of the item is just the value of the item. 
-3. `0-1 backpack` problems don't only solve the problems of the greatest value, but also the problems that whether a backpack can be filled to capacity, in which case we just need to check whether `dp[weight] == weight`.
+3. `0-1 backpack` problems don't only solve the problems of the greatest value, but also the problems like whether a backpack can be filled to capacity, in which case we just need to check whether `dp[weight] == weight`.
 
 ### 12. Wight of the Last Stone Ⅱ
 
