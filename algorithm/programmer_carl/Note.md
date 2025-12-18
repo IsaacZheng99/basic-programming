@@ -726,7 +726,7 @@
 
 ### 13. Target Sum
 
-1. To translate this problem into `0-1 backpack`, we have these formulas: `left - right = target`, `left + right = sum`, then `left = (sum + target) / 2`.
+1. To translate this problem into `0-1 backpack`, we have these formulas: `left - right = target`, `left + right = sum`, then `left = (sum + target) / 2`. In this case, it's no longer a pure `0-1 backpack` problem, but a problem about there are how many methods to fill up the current backpack.
 
     Moreover, for the initialization of `dp[]`, we have `dp[0] = 1` because we can make all the numbers be right, then `left = 0` and this is one case which is always there.
 
