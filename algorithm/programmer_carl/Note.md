@@ -778,11 +778,11 @@
 
     For the last two cases, they are both contain the first case. So we can just use two `dp[]` to slove this problem.
 
-2. Originally, I define the `dp[]` arrays based on whether consider the first element. This definition is essentially as same as the reference definition.
+2. For the definition of `dp[]`, we can use two separate arrays, or we can just add two parameters: the `start index` and `end index` to unify the process.
 
 ### 25. Raid Homes and Plunder Houses Ⅲ
 
-1. For `brute force`, we can use `postorder traversal` and we can use `memorized recursion` to prune.
+1. For `brute force`, we can use `postorder traversal` and we can use `memorized recursion` to store the result of the  `traversed grandson node` and thus prune.
 2. This problem is `tree based dynamic programming`, we need to combine `the three core elements of recursion` with `the five core elements of dynamic programming`.
 
 ### 26. Best Time to Buy and Sell Stocks
