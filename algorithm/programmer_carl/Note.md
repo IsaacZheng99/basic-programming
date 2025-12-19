@@ -639,7 +639,7 @@
 
 ## 10. Dynamic Programming
 
-**Knowledge Points**: `dynamic programming vs. greedy algorithm`, `five core elements`, `0-1 backpack`, `rolling array`, `traversal order of 0-1 backpack when using rolling array`, `traversal order of complete backpack when dealing with combination and permutation with rolling array`, `tree based dynamic programming`, `Levenshtein distance`
+**Knowledge Points**: `dynamic programming vs. greedy algorithm`, `five core elements`, `0-1 backpack`, `rolling array`, `traversal order of 0-1 backpack when using rolling array`, `traversal order of complete backpack when dealing with combination and permutation with rolling array`, `overlapping problem of rolling array`,  `tree based dynamic programming`, `Levenshtein distance`
 
 ### 1. Basics
 
