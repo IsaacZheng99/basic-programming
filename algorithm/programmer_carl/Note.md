@@ -783,7 +783,7 @@
 ### 25. Raid Homes and Plunder Houses Ⅲ
 
 1. For `brute force`, we can use `postorder traversal` and we can use `memorized recursion` to store the result of the  `traversed grandson node` and thus prune.
-2. This problem is `tree based dynamic programming`, we need to combine `the three core elements of recursion` with `the five core elements of dynamic programming`.
+2. This problem is `tree based dynamic programming`, we need to combine `the three core elements of recursion` with `the five core elements of dynamic programming`. In this case, the **return value of the recursion function** is the `dp[]` array itself, or we can say the **definition** of the `dp[]` array. Specifically, the definition is that `dp[0]` represents the result when not stealing the current node, while `dp[1]` represents the result when strealing the current node.
 
 ### 26. Best Time to Buy and Sell Stocks
 
