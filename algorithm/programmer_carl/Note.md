@@ -826,6 +826,8 @@
 
 ### 39. Number of Subsequences
 
+1. When `s[i - 1] != t[j - 1]`, we have `dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]`, meaning we **accumulate** the numbers of the matched subsequences.
+
 ### 40. Delete Operation of Two Strings
 
 ### 41. Levenshtein Distance (Edit Distane)
