@@ -787,6 +787,8 @@
 
 ### 26. Best Time to Buy and Sell Stocks
 
+1. Note that we can only buy and sell stocks for **one** time, therefore we have `dp[i][1] = std::max(dp[i - 1][1], -prices[i])`, not `dp[i][1] = std::max(dp[i - 1][1], dp[i - 1][0] - prices[i])`.
+
 ### 27. Best Time to Buy and Sell Stocks Ⅱ
 
 ### 28. Best Time to Buy and Sell Stocks Ⅲ
