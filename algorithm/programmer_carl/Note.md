@@ -886,7 +886,7 @@
 
 `storage of graph: naive storage, adjacent matrix, adjacent list`
 
-`traversal of grapg: dfs, bfs`
+`traversal of graph: dfs, bfs`
 
 `main functions of disjoint set union` 
 
