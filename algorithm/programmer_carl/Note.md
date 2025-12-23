@@ -935,7 +935,7 @@
 6. Storage of `graph`:
 
     1. `Naive storage`: directly store the `edges` by, e.g., a `2-D array` but this storage method is not efficient for like searching because we need to traverse all the elements of the `2-D array`.
-    2. `Adjacent matrix`: use a `2-D array` to store the `graph`, where the `indices` are the `nodes` and the `values` are the `values of the edges`. This storage is suitable for `dense graphs` and when it comes to traverse all the `edges`, this method is inefficient.
+    2. `Adjacent matrix`: use a `2-D array` to store the `graph`, where the `indices` are the `nodes` and the `values` are the `values of the edges`. This storage is suitable for `dense graphs`.
     3. `Adjacent list`: use a `1-D array` and `lists` to store the `graph`, where the `array` stores the `nodes` and the corresponding `list` stores the adjacent `nodes` and the size of the `list` depends the numbers of `edges`. This storage is suitable for `sparse graph` and when it comes to check whether there is a `edge` between two `nodes`, this method is inefficient.
 
 7. Traversal of `graph`: `dfs`, `bfs`.
