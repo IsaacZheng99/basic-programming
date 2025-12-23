@@ -930,7 +930,7 @@
 
 5. `Connected component` is a `maximal connected subgraph` of a `undirected graph`.
 
-    `Strongly Connected component` is a `maximal connected subgraph` of a `directed graph`.
+    `Strongly Connected component` is a `maximal strongly connected subgraph` of a `directed graph`.
 
 6. Storage of `graph`:
 
