@@ -869,7 +869,7 @@
 ### 5. Largest Rectangle in the Bar Chart
 
 1. For `brute force`, we can get the **first smaller** elements to the left and to the right of the current element respectively and get the current largest rectangle by `heights[i] * (rightIndex - leftIndex + 1)`. I personally think this method is like `greedy algorithm`.
-2. For `monotonic stack`, we also need to get the first smaller elements to the left and the first element to the right of the current element, and we can handle three cases one by one: `height[stack.top()] < height[i]`, `height[stack.top()] == height[i]` and `height[stack.top()] > height[i]` or we can simplify these three cases. Note that we need to add two **zeros** in the first and last position of the original `std::vector<int> heights` to handle the case where `std::vector<int> heights` is monotonic.
+2. For `monotonic stack`, we also need to get the first smaller elements to the left and the first smaller element to the right of the current element, and we can handle three cases one by one: `height[stack.top()] < height[i]`, `height[stack.top()] == height[i]` and `height[stack.top()] > height[i]` or we can simplify these three cases. Note that we need to add two **zeros** in the first and last position of the original `std::vector<int> heights` to handle the case when `std::stack<int> stack` is monotonic.
 3. `Monotonic stack` can help find the **first smaller** elements to the left and right of the current element at the same time and we **don't** need to use two stacks (`leftStack` and `rightStack`).
 
 ## 12. Graph Theory
