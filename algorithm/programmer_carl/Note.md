@@ -985,6 +985,8 @@
 
 ### 12. Island Problems (8): Perimeter of the Island
 
+1. In this problem, `DFS` or `BFS` don't work well. We just need to check the four directions of each grid with value `1` and if there is a `0` grid around or the current `1` grid is on the boundary, add `1` to the result.
+
 ### 13. String Solitaire
 
 ### 14. Complete Reachability of Directed Graph
