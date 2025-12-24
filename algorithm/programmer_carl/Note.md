@@ -981,7 +981,7 @@
 
 ### 11. Island Problems (7): Build the Largest Island
 
-1. We can firstly get areas of all the islands and then check whether they can be connected. The key is to **mark** the grid as the index of which island it belongs to.
+1. We can firstly get areas of all the islands and then check whether they can be connected. The key is to **mark** the grid as the index of which island it belongs to and sum up the areas of islands around the current `0` grid.
 
 ### 12. Island Problems (8): Perimeter of the Island
 
