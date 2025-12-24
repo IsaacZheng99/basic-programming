@@ -977,6 +977,8 @@
 
 ### 10. Island Problems (6): Water Flows
 
+1. We can firstly traverse from the grids on the boundaries and mark the grids with bigger values.
+
 ### 11. Island Problems (7): Build the Largest Island
 
 1. We can firstly get areas of all the islands and then check whether they can be connected. The key is to **mark** the grid as the index of which island it belongs to.
