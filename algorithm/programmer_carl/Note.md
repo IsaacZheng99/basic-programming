@@ -1136,7 +1136,7 @@
 
 ### 23. Dijkstra Algorithm (Heap Optimization Edition)
 
-1. We know that the `time complexity` of `Dijkstra algorithm` is `O(N^2)`, where `N` is the number of `nodes`. Is it possible to optimize it when the number of `nodes` is large while the number of edges is small?
+1. We know that the `time complexity` of `Dijkstra algorithm` is `O(N^2)`, where `N` is the number of `nodes`. Is it possible to optimize it when the number of `nodes` is large while the number of `edges` is small?
 2. Optimization:
     1. Firstly, we can focus on the `edges` and we can use `adjacent list` to opimize when the number of edges is small.
     2. Then, for the first core element: `select the closest unvisited node`, we can try to use a `min heap` to get the `node` with shortest distance each time. Therefore, the outer loop is no longer `O(n)` because we just need to maintain a `min heap` and handle all the `edges` one by one.
@@ -1164,7 +1164,7 @@
 
         where we apart the question into multiple child questions and get the global solution iteratively.
 
-    2. The reason of `n - 1` times is that there are at most `n - 1` `edges` between any two `nodes` in a graph without `negative weight circle`, and for the `k-th` `relaxation`, we can find shortest paths with maximum `k` `edges` and sometimes it may converge in advance, meaning the current shortest path may have more than `k` `edges`. Then we need to iterate for `n - 1` times to get shortest paths with maximum `n - 1` `edges`.
+    2. The reason of `n - 1` times is that there are at most `n - 1` `edges` between any two `nodes` in a graph without `negative weight circle`, and for the `k-th` `relaxation`, we can find shortest paths with maximum `k` `edges` and sometimes it may converge in advance, meaning the current shortest path may have less than `k` `edges`. Therefore we need to iterate for `n - 1` times to get shortest paths with maximum `n - 1` `edges`.
 
 3. The `time complexity` of `Bellman & Ford algorithm (naive edition)` is `O(N * E)`, and the `space complexity` is `O(N)` (without considering the space of the graph), where `N` is the number of `nodes` and `E` is the number of `edges`.
 4. Note that if the `minDist[] array` still changes after `n - 1` `relaxation`, we can know that there is a `negative weight circle` in the `graph`.
