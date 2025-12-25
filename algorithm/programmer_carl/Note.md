@@ -1164,7 +1164,7 @@
 
         where we apart the question into multiple child questions and get the global solution iteratively.
 
-    2. The reason of `n - 1` times is that there are at most `n - 1` `edges` between any two `nodes` in a graph without `negative weight circle`, and for the `k-th` `relaxation`, we can find shortest paths with maximum `k` `edges` and sometimes it may converge in advance, meaning the current shortest path may have less than `k` `edges`. Therefore we need to iterate for `n - 1` times to get shortest paths with maximum `n - 1` `edges`.
+    2. The reason of `n - 1` times is that there are at most `n - 1` `edges` between any two `nodes` in a graph without `negative weight circle`, and for the `k-th` `relaxation`, we can find shortest paths with maximum `k` `edges` and sometimes it may converge in advance, meaning the current shortest path may have more than `k` `edges`. Therefore we need to iterate for `n - 1` times to get shortest paths with maximum `n - 1` `edges`.
 
 3. The `time complexity` of `Bellman & Ford algorithm (naive edition)` is `O(N * E)`, and the `space complexity` is `O(N)` (without considering the space of the graph), where `N` is the number of `nodes` and `E` is the number of `edges`.
 4. Note that if the `minDist[] array` still changes after `n - 1` `relaxation`, we can know that there is a `negative weight circle` in the `graph`.
