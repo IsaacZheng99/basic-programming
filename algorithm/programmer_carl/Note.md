@@ -1065,6 +1065,8 @@
 
 ### 17. Redundant Connection
 
+1. We just need to traverse the edges from begin to end and once the two nodes of the current edge have been in the same union, the current edge will make a circle.
+
 ### 18. Redundant Connection Ⅱ
 
 1. We can calssify the cases according to the `indegree`:
