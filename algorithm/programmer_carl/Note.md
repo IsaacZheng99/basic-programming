@@ -1098,7 +1098,7 @@
 
 ### 22. Dijkstra Algorithm (Naive Edition)
 
-1.  `Dijkstra algorithm` can get shortest paths from the starting `node` to **all** the other `nodes`, but the weights can't be negative. If one of the weights is negative, perhaps `Dijkstra algorithm` can't find the correct minimum path because the visited `nodes` can be visited again and thus the `minDist` values of them can't be updated if there is a `edge` with negative weight appearing sequentially.
+1.  `Dijkstra algorithm` can get shortest paths from the starting `node` to **all** the other `nodes`, but the weights can't be negative. If one of the weights is negative, perhaps `Dijkstra algorithm` can't find the correct minimum path because the visited `nodes` can't be visited again and thus the `minDist` values of them can't be updated if there is a `edge` with negative weight appearing sequentially.
 
 2. `Dijkstra algorithm` also takes the `greedy` strategy and it continuously searches for the unvisited `node` closest to the starting `node`.
 
