@@ -1084,7 +1084,7 @@
 
 ### 20. Kruskal Algorithm for Minimum Spanning Tree
 
-1. `Kruskal algorithm` also takes the `greedy` strategy, and choose the `edge` with minimum weight every time. It takes advantage of `diskoint set union` to check whether the current `edge` is legal.
+1. `Kruskal algorithm` also takes the `greedy` strategy, and choose the `edge` with minimum weight every time. It takes advantage of `diskoint set union` to check whether the current `edge` is legal. Specifically, if the two nodes of the current edge are in the same union, it means this edge will make a circle and it's not legal. (Note that there is no circle in a `MST`.)
 2. Essentially, `Prim algorithm` operates the `nodes` while `Kruskal algorithm` operates the `edges`. If the graph has many `nodes` but a few `edges`, it's better to use `Kruskal algorithm`. Therefore, `dense graph` benefits `Prim algorithm` and `sparse graph` benefits `Kruskal algorithm`.
 3. The `time complexity` of `Kruskal algorithm` is `O(eloge)`, where `e` is the number of `edges`.
 
