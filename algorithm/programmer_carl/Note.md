@@ -1092,9 +1092,9 @@
 ### 21. Topological Sort
 
 1. `Topological sort` can transfer a `directed graph` into a **linear** sort and check whether there is a circle. If there is a circle, meaning there is circular dependency, we can't do linear sort.
-2. Two steps of `topological sort`:
+2. Two steps of `topological sort (Kahn's Algorithm Edition (BFS))`:
     1. Find a `node` with indegree of `0` and add it to the result set.
-    2. Delete the `node` from the graph.
+    2. Delete the `node` from the graph and update the indegrees of the adjecent nodes.
 
 ### 22. Dijkstra Algorithm (Naive Edition)
 
