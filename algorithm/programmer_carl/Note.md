@@ -1072,6 +1072,7 @@
 1. We can calssify the cases according to the `indegree`:
     1. If there is a `node` with `indegree` equal to `2`: we need to choose one `edge` pointing to this `node` to delete. Note that in this case, the two edges can be deleted both or just one of them can be deleted and we need to judge. Specifically, if we delete one of the two edges and there is no circle in the tree, the current graph is a tree.
     2. If there is no `node` with `indegree` equal to `2`: in this case there is a circle and we need to traverse the `edges` and delete the `edge` which makes the circle.
+2. `Degree` takes an important role in some problems, it can help like check circle, sort topologically, etc.
 
 ### 19. Prim Algorithm for Minimum Spanning Tree
 
