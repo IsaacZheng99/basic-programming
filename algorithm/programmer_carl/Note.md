@@ -1172,8 +1172,35 @@
 ### 25. Bellman & Ford Algorithm (Queue Improved Edition)
 
 1. `SPFA`: shortest path faster algorithm.
-2. In the naive edition, we always `relax` **all** the edges each time, but there are some `edges` are invalid for updating the shortest path. We only need to `realx` `edges` where the `starting nodes` were updated in the last `relaxation` and we can use `queue` or `stack` to record them (the order doesn't matter). Note that when we push a `node` into the `queue`, we can use `if (visited[edge.end] == false)` to check whether it has been in the `queue`, and in this way we can avoid repeated updates. (I personally think we can simply use `std::unordered_set` to replace the `queue and visited[]`.)
-3. The `time complexity` of `Bellman & Ford algorithm (queue improved edition)` is `O(K * N)`, where `K` is a constant and `N` is the number of `nodes`. When the graph is dense, `K` levels off to `E`, which is close to the `time complexity` of `Bellman & Ford algorithm (naive edition)`. Note that we don't consider the `time complexity` of `std::queue<>::push()` and we are just discussing the overall `time complexity`.
+
+2. In the naive edition, we always `relax` **all** the edges each time, but there are some `edges` are invalid for updating the shortest path. We only need to `realx` `edges` where the `starting nodes` were updated in the last `relaxation` and we can use `queue` or `stack` to record them (the order doesn't matter).
+
+    1. Note that when we push a `node` into the `queue`, we can use `if (visited[edge.end] == false)` to check whether it has been in the `queue`, and in this way we can avoid repeated updates. (I personally think we can simply use `std::unordered_set` to replace the `queue and visited[]`.)
+
+    2. Note that when we avoid pushing a `node` into the `queue` if it's already in, we also need to update the `minDist[]`.
+
+        ```c++
+        while (!queue.empty())
+        {
+            int curNode = queue.front();
+            queue.pop();
+            isInQueue[curNode] = false;
+        
+            for (auto& edge : graph[curNode])
+            {
+                if (minDist[edge.first] > minDist[curNode] + edge.second)
+                {
+                    minDist[edge.first] = minDist[curNode] + edge.second;  // update first
+        
+                    if (isInQueue[edge.first] == true)  // check isInQueue then
+                        continue;
+                    queue.push(edge.first);
+                    isInQueue[edge.first] = true;
+                }
+            }
+        }
+
+3. The `time complexity` of `Bellman & Ford algorithm (queue improved edition)` is `O(K * N)`, where `K` is a constant and `N` is the number of `nodes`. When the graph is **dense**, `K` levels off to `E`, which is close to the `time complexity` of `Bellman & Ford algorithm (naive edition)`. Note that we don't consider the `time complexity` of `std::queue<>::push()` and we are just discussing the overall `time complexity`.
 
 ### 26. Bellman & Ford Algorithm for Testing Negative Weight Circle
 
