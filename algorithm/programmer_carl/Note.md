@@ -1005,8 +1005,8 @@
     1. If we use `set` or `map`, there will be a lot of `sets` and `values` of the `map`.
     2. If we use a `2-D array`, we need to traverse all the elements of the `array`.
     3. The above implementations are inefficient in `space` and `time`. If we focus on the `connectivity`, we can simply use a `1-D array`, where `father[A] = B, father[B] = C` means `A`, `B`, and `C` are connected. (Note that the plain `disjoint set uniont` can be used for `undirected graph` but not for `directed graph`.)
+    4. `Path compression`: for the `root seeking function` `find()`, the recurssive preocess is slow and we can simply use `return father[u] = find(father[u])` to compress the recurssive path. If we look at the`tree` structure, after `path compression`, the `tree` will become lower and there will have more children which are on the same layer. To sum up, the `find()` function can be written as:
 
-4. `Path compression`: for the `root seeking function` `find()`, the recurssive preocess is slow and we can simply use `return father[u] = find(father[u])` to compress the recurssive path. To sum up, the `find()` function can be written as:
 
     ```c++
     int find(int u)
@@ -1015,7 +1015,7 @@
     }
     ```
 
-5. Template code of `disjoint set union`:
+4. Template code of `disjoint set union`:
 
     Note that we need to join the root `nodes` rather the current `nodes`, so we can't replace the code of `join()` with the code of `isSame()`.
 
@@ -1054,9 +1054,9 @@
     }
     ```
 
-6. Besides `path compression`, we can also join two sets according to the `rank` (merge the graph with **lower** `rank` into the graph with **higher** `rank`), but this method will not make the graph as flat as `path compression` does and thus less efficient.
+5. Besides `path compression`, we can also join two sets according to the `rank` (merge the graph with **lower** `rank` into the graph with **higher** `rank`), but this method will not make the graph as flat as `path compression` does and thus less efficient.
 
-7. `Complexity` of `disjoint set union` with `path compression`:
+6. `Complexity` of `disjoint set union` with `path compression`:
 
     1. `Space complexity`: `O(n)` comes from `father[]`.
     2. `Time complexity`: between `O(logn)` and `O(1)` and as the query and merge operations increase, the `time complexity` will approach to `O(1)`. In the beginning, we need to search a `N-ary tree` and the `time complexity` is `O(logn)`, but after `path compression`, it will become `O(1)`.
