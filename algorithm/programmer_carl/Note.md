@@ -1059,7 +1059,7 @@
 6. `Complexity` of `disjoint set union` with `path compression`:
 
     1. `Space complexity`: `O(n)` comes from `father[]`.
-    2. `Time complexity`: between `O(logn)` and `O(1)` and as the query and merge operations increase, the `time complexity` will approach to `O(1)`. In the beginning, we need to search a `N-ary tree` and the `time complexity` is `O(logn)`, but after `path compression`, it will become `O(1)`.
+    2. `Time complexity`: between `O(logn)` and `O(1)` and as the query and merge operations increase, the `time complexity` will approach to `O(1)`. In the beginning, we need to search a `multiway tree` and the `time complexity` is `O(logn)`, but after `path compression`, it will become `O(1)`.
 
 ### 16. Find Existed Path
 
