@@ -1212,7 +1212,7 @@
 
 1. In this problem, the number of `nodes` on the path is limited as `k`, meaning the maximum length of the shortest path is `k + 1`. Therefore, we can `relax all the edges` for `k + 1` times instead of `n - 1` times.
 
-    However, we know that the `relaxation` may lead to convergence in advance, e.g., after the first `relaxtion`, the `minDist[] array` may get a shortest path with length larger than `1`. Therefore, we need to record the `oldMinDist[] array` and update `curMinDist[edge.end] = oldMinDist[edge.start] + edge.weight` when `oldMinDist[edge.start] != INT_MAX`.
+    However, we know that the `relaxation` may lead to convergence in advance, e.g., after the first `relaxtion`, the `minDist[] array` may get a shortest path with length larger than `1`. Therefore, we need to record the `oldMinDist[] array` and update `curMinDist[edge.end] = oldMinDist[edge.start] + edge.weight` when `oldMinDist[edge.start] != INT_MAX`. In this way, the upadted `curMinDist[]` won't affect the afterwards updates and there will have no advanced convergence.
 
 ### 28. Floyd Algorithm
 
@@ -1224,8 +1224,10 @@
 
     1. The meaning of `dp[]` and `index`:
 
+        1. First of all, for example, the shortest path from `1` to `9` can be the shortest path from `1` to `3` plus the shortest path from `3` to `9`, or  the shortest path from `1` to 4 plus the shortest path from`4` to `9`, etc, and we just need to take the minimum value.
         1. We use `grid[i][j][k]` to do `dynamic programming` and store the graph at the meanwhile.
         1. The meaning of `grid[i][j][k]` is the length of the shortest path from `i` to `j` with several `nodes` from `[1, ..., k]` as the middle nodes.
+        1. The `k` dimension works for the state transmission of `dynamic programming`. Note that `i` and `j` are just the start node and end node, which can't help get the sub question.
 
     2. The `recursive formula`:
 
