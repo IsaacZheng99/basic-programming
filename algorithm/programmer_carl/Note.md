@@ -1152,14 +1152,14 @@
     1. The code of `relaxing all the edges` is like:
 
         ```c++
-        if (minDist[B] > minDist[A] + weight(A, B))
-            minDist[B] = minDist[A] + weight(A, B);
+        if (minDist[to] > minDist[from] + weight(from, to))
+            minDist[to] = minDist[from] + weight(from, to);
         ```
 
         We can also write it like this, which is like `dynamic programming`:
 
         ```c++
-        minDist[B] = std::min(minDist[B], minDist[A] + weight(A, B));
+        minDist[to] = std::min(minDist[to], minDist[from] + weight(from, to));
         ```
 
         where we apart the question into multiple child questions and get the global solution iteratively.
@@ -1264,6 +1264,9 @@
     // BFS
     int x = q.front(); q.pop();
     int y = q.front(); q.pop();
+    
+    // A*
+    Knight cur = pq.top();  // pq is std::priority_queue<>
     ```
 
 4. `A* algorithm` will sort the elements in the `queue` based on the weight: `F = G + H`, where `G` is the distance from the starting `node` to the current `node` and `H` is the distance from the current `node` to the end `node`. Note that the distance can be `Manhattan distance`, `Euclidean distance`, and `Chebyshev distance`, and in this problem we need to use `Euclidean distance`.
