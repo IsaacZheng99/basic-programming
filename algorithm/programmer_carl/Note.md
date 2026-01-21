@@ -1078,9 +1078,9 @@
 
 1. `Prim algorithm` takes the `greedy` strategy, and selects the `node` **closest** to the `MST` and add it to `MST` every time. (Note that `MST` is `undirected graph`.)
 2. Three core elements of `Prim algorithm`:
-    1. Select the `node` closest to the spanning tree.
+    1. Select the `non-spanning tree node` closest to the spanning tree.
     2. Add the closest `node` to the spanning tree.
-    3. Update the distance from non-spanning tree `nodes` to the spanning tree. (Update the `minDist` array.)
+    3. Update the distance from `non-spanning tree nodes` to the spanning tree. (Update the `minDist` array.)
 3. The `time complexity` of `Prim algorithm` is `O(n^2)`, where `n` is the number of `nodes`.
 
 ### 20. Kruskal Algorithm for Minimum Spanning Tree
