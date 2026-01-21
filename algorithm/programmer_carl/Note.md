@@ -1140,7 +1140,7 @@
 2. Optimization:
     1. Firstly, we can focus on the `edges` and we can use `adjacent list` to opimize when the number of edges is small.
     2. Then, for the first core element: `select the closest unvisited node`, we can try to use a `min heap` to get the `node` with shortest distance each time. Therefore, the outer loop is no longer `O(n)` because we just need to maintain a `min heap` and handle all the `edges` one by one.
-3. The `time complexity` of `Dijkstra algorithm (heap optimization edition)` is `O(ElogE)`, where `E` is the number of edges.
+3. The `time complexity` of `Dijkstra algorithm (heap optimization edition)` is `O(ElogE)`, where `E` is the number of edges. Note that the `time complexity` doesn't have connection with the number of `nodes` any more.
 4. We can also use `adjacent matrix` to achive the `heap optimization edition`, but for the third core element: `update the distances of unvisited nodes to the starting node (update the minDist array) `, we need to traverse the `adjacent matrix`, leading to the `time complexity` being `O(E(logE + N))`.
 
 ### 24. Bellman & Ford Algorithm (Naive Edition)
