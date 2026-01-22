@@ -1218,7 +1218,7 @@
 
 1. For `Dijkstra algorithm` and `Bellman & Ford algorithm`, they solve the **single-source shortest path** problem. But `Floyd algorithm` can solve **multi-sources shortest path** problem where there are multiple sources and multuple ends.
 
-    Besides, `Floyd algorithm` can handle **negative** weights and the core is `dynamic programming`.
+    Besides, `Floyd algorithm` can handle **negative** weights and the core is `dynamic programming`. (Note that `Floyd algorithm` can test negative weight circle by checking whether there is `grid[i][i][k] < 0`.)
 
 2. Next we analyze `Floyd algorithm` based on the `five core elements` of `dynamic programming`:
 
