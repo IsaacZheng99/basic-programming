@@ -1177,7 +1177,7 @@
 
     1. Note that when we push a `node` into the `queue`, we can use `if (visited[edge.end] == false)` to check whether it has been in the `queue`, and in this way we can avoid repeated updates. (I personally think we can simply use `std::unordered_set` to replace the `queue and visited[]`.)
 
-    2. Note that when we avoid pushing a `node` into the `queue` if it's already in, we also need to update the `minDist[]`.
+    2. Note that when we avoid pushing a `node` into the `queue` if it's already in, we also need to update the `minDist[]`. Beacuse a `node` which is already in the `queue` will only influence the `nodes` which it points to, but not itself.
 
         ```c++
         while (!queue.empty())
