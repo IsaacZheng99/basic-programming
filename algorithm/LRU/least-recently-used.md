@@ -51,5 +51,113 @@
 ### 3.2 通用实现
 
 - 上述python实现，我们通过OrderedDict对象直接实现了LRU的细节，本质上还是在调接口。
+
 - 如果要实现一种通用的做法，也就是需要手动去实现插入有序和更新元素到最新的操作，比较常见的做法是通过一个双向链表实现，但这样会导致查询效率降低为O(n)，如果要解决这个问题，可能最终落地下来就是按照python3.6之后dict的实现了：将key和value分离，key还是用于哈希操作。
-- 笔者能想到的最通用的做法就是这样了，就不重复造轮子了。（看了下LeetCode其他人的题解，也还是会用一个字典或map来存储，双向链表保证有序）
+
+- C++实现如下：
+
+    ```c++
+    struct Node
+    {
+        int key, val;
+        Node* prev;
+        Node* next;
+    
+        Node()
+            : key(-1), val(-1), prev(nullptr), next(nullptr) {}
+    
+        Node(int key, int val)
+            : key(key), val(val), prev(nullptr), next(nullptr) {}
+    };
+    
+    
+    class LRUCache {
+    public:
+        LRUCache(int capacity)
+            : capacity(capacity)
+        {
+            dummyHead = new Node();
+            dummyTail = new Node();
+            dummyHead->next = dummyTail;
+            dummyTail->prev = dummyHead;
+        }
+    
+        ~LRUCache()
+        {
+            Node* curNode = dummyHead->next;
+            while (curNode != dummyTail)
+            {
+                Node* tempNode = curNode->next;
+                delete curNode;
+                curNode = tempNode;
+            }
+    
+            delete dummyHead;
+            delete dummyTail;
+        }
+        
+        int get(int key)
+        {
+            if (uMap.find(key) == uMap.end())
+                return -1;
+            
+            Node* curNode = uMap[key];
+            removeNodeFromList(curNode);
+            addToTail(curNode);
+    
+            return curNode->val;
+        }
+        
+        void put(int key, int value)
+        {
+            if (uMap.find(key) == uMap.end())
+            {
+                if (uMap.size() >= capacity)
+                {
+                    Node* deleteNode = dummyHead->next;
+                    uMap.erase(deleteNode->key);
+                    removeNodeFromList(deleteNode);
+                    delete deleteNode;
+                }
+    
+                Node* newNode = new Node(key, value);
+                uMap.emplace(key, newNode);
+                addToTail(newNode);
+            }
+            else
+            {
+                Node* curNode = uMap[key];
+                curNode->val = value;
+                removeNodeFromList(curNode);
+                addToTail(curNode);
+            }
+        }
+    private:
+        void addToTail(Node* node)
+        {
+            dummyTail->prev->next = node;
+            node->prev = dummyTail->prev;
+            node->next = dummyTail;
+            dummyTail->prev = node;
+        }
+    
+        void removeNodeFromList(Node* node)
+        {
+            node->prev->next = node->next;
+            node->next->prev = node->prev;
+        }
+    private:
+        int capacity;
+        std::unordered_map<int, Node*> uMap;
+        Node* dummyHead;
+        Node* dummyTail;
+    };
+    
+    /**
+     * Your LRUCache object will be instantiated and called as such:
+     * LRUCache* obj = new LRUCache(capacity);
+     * int param_1 = obj->get(key);
+     * obj->put(key,value);
+     */
+    ```
+
